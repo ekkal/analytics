@@ -1,0 +1,33 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: dummy-service-template
+  title: Dummy Service Template
+  description: Create a dummy service component
+spec:
+  owner: team-a
+  type: service
+
+  parameters:
+    - title: Service Information
+      required:
+        - name
+      properties:
+        name:
+          title: Service Name
+          type: string
+          description: Name of the dummy service
+
+  steps:
+    - id: log
+      name: Log creation
+      action: debug:log
+      input:
+        message: "Dummy service ${{ parameters.name }} created"
+
+  output:
+    text:
+      - title: Result
+        content: |
+          Dummy service created successfully.
+          Name: ${{ parameters.name }}
